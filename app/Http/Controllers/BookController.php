@@ -5,8 +5,16 @@ use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+
+
+
 class BookController extends Controller
 {
+
+    public function getBooks()
+{
+    return response()->json(Book::all());
+}
     public function index()
     {
         $books = Book::all();
@@ -75,3 +83,4 @@ class BookController extends Controller
         return redirect()->route('books.index')->with('success', 'Book deleted successfully.');
     }
 }
+

@@ -18,11 +18,11 @@
         }
 
         .navbar {
-            padding-top: 10px;
+            padding-top: 1px;
             /* Adjust padding as needed */
-            padding-bottom: 10px;
+            padding-bottom: 3px;
             /* Adjust padding as needed */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(147, 126, 126, 0.1);
             /* Optional: add a subtle shadow */
         }
 
@@ -34,7 +34,7 @@
         }
 
         .container {
-            margin-top: 50px;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -58,28 +58,28 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Dashboard</a>
+                        <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Staff</a>
+                        <a class="nav-link" href="{{ route('restaurant-staff.index') }}">Staff</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Customer</a>
+                        <a class="nav-link" href="{{ route('customers.index') }}">Customer</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Food Items</a>
+                        <a class="nav-link" href="{{ route('food-items.index') }}">Food Items</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Food Orders</a>
+                        <a class="nav-link" href="">Food Orders</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Food Delivery</a>
+                        <a class="nav-link" href="">Food Delivery</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Invoices</a>
+                        <a class="nav-link" href="">Invoices</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Payments</a>
+                        <a class="nav-link" href="">Payments</a>
                     </li>
                 </ul>
             </div>

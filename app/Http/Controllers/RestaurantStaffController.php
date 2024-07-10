@@ -9,8 +9,8 @@ class RestaurantStaffController extends Controller
 {
     public function index()
     {
-        $restaurantStaffs = RestaurantStaff::all();
-        return view('restaurant_staff.index', compact('restaurantStaffs'));
+        $staff = RestaurantStaff::all();
+        return view('restaurant_staff.index', compact('staff'));
     }
 
     public function create()
@@ -21,9 +21,9 @@ class RestaurantStaffController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required',
-            'role' => 'required',
-            'contact' => 'required',
+            'name' => 'required|string|max:255',
+            'role' => 'required|string|max:255',
+            'contact' => 'required|string|max:255',
         ]);
 
         RestaurantStaff::create($validated);
@@ -43,9 +43,9 @@ class RestaurantStaffController extends Controller
     public function update(Request $request, RestaurantStaff $restaurantStaff)
     {
         $validated = $request->validate([
-            'name' => 'required',
-            'role' => 'required',
-            'contact' => 'required',
+            'name' => 'required|string|max:255',
+            'role' => 'required|string|max:255',
+            'contact' => 'required|string|max:255',
         ]);
 
         $restaurantStaff->update($validated);

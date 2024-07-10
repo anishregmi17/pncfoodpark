@@ -8,7 +8,7 @@
             <li>
                 <a href="{{ route('restaurant-staff.show', $staffMember->id) }}">{{ $staffMember->name }}</a>
                 <a href="{{ route('restaurant-staff.edit', $staffMember->id) }}">Edit</a>
-                <form action="{{ route('restaurant-staff.destroy', $staffMember->id) }}" method="POST" style="display: inline;">
+                <form action="{{ route('restaurant-staff.destroy', $staffMember->id) }}" method="POST" style="display:inline">
                     @csrf
                     @method('DELETE')
                     <button type="submit">Delete</button>

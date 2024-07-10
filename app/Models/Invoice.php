@@ -15,4 +15,9 @@ class Invoice extends Model
     {
         return $this->belongsTo(FoodOrdering::class);
     }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
 }

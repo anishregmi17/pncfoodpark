@@ -1,63 +1,63 @@
 <?php
-// app/Http/Controllers/InvoiceController.php
+// app/Http/Controllers/PaymentController.php
 namespace App\Http\Controllers;
 
+use App\Models\Payment;
 use App\Models\Invoice;
-use App\Models\FoodOrdering;
 use Illuminate\Http\Request;
 
-class InvoiceController extends Controller
+class PaymentController extends Controller
 {
     public function index()
     {
-        $invoices = Invoice::all();
-        return view('invoices.index', compact('invoices'));
+        $payments = Payment::all();
+        return view('payments.index', compact('payments'));
     }
 
     public function create()
     {
-        $foodOrderings = FoodOrdering::all();
-        return view('invoices.create', compact('foodOrderings'));
+        $invoices = Invoice::all();
+        return view('payments.create', compact('invoices'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'food_ordering_id' => 'required|exists:food_orderings,id',
+            'invoice_id' => 'required|exists:invoices,id',
             'amount' => 'required|numeric',
-            'status' => 'required',
+            'method' => 'required',
         ]);
 
-        Invoice::create($request->all());
-        return redirect()->route('invoices.index');
+        Payment::create($request->all());
+        return redirect()->route('payments.index');
     }
 
-    public function show(Invoice $invoice)
+    public function show(Payment $payment)
     {
-        return view('invoices.show', compact('invoice'));
+        return view('payments.show', compact('payment'));
     }
 
-    public function edit(Invoice $invoice)
+    public function edit(Payment $payment)
     {
-        $foodOrderings = FoodOrdering::all();
-        return view('invoices.edit', compact('invoice', 'foodOrderings'));
+        $invoices = Invoice::all();
+        return view('payments.edit', compact('payment', 'invoices'));
     }
 
-    public function update(Request $request, Invoice $invoice)
+    public function update(Request $request, Payment $payment)
     {
         $request->validate([
-            'food_ordering_id' => 'required|exists:food_orderings,id',
+            'invoice_id' => 'required|exists:invoices,id',
             'amount' => 'required|numeric',
-            'status' => 'required',
+            'method' => 'required',
         ]);
 
-        $invoice->update($request->all());
-        return redirect()->route('invoices.index');
+        $payment->update($request->all());
+        return redirect()->route('payments.index');
     }
 
-    public function destroy(Invoice $invoice)
+    public function destroy(Payment $payment)
     {
-        $invoice->delete();
-        return redirect()->route('invoices.index');
+        $payment->delete();
+        return redirect()->route('payments.index');
     }
 }

@@ -1,22 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Edit Invoice</h1>
-    <form action="{{ route('invoices.update', $invoice->id) }}" method="POST">
+    <h1>Edit Payment</h1>
+    <form action="{{ route('payments.update', $payment->id) }}" method="POST">
         @csrf
         @method('PUT')
-        <label>Food Ordering:</label>
-        <select name="food_ordering_id" required>
-            @foreach ($foodOrderings as $foodOrdering)
-                <option value="{{ $foodOrdering->id }}" {{ $foodOrdering->id == $invoice->food_ordering_id ? 'selected' : '' }}>
-                    {{ $foodOrdering->id }} - {{ $foodOrdering->customer->name }} - {{ $foodOrdering->foodItem->name }}
+        <label>Invoice:</label>
+        <select name="invoice_id" required>
+            @foreach ($invoices as $invoice)
+                <option value="{{ $invoice->id }}" {{ $invoice->id == $payment->invoice_id ? 'selected' : '' }}>
+                    {{ $invoice->id }} - {{ $invoice->foodOrdering->customer->name }}
                 </option>
             @endforeach
         </select>
         <label>Amount:</label>
-        <input type="number" name="amount" value="{{ $invoice->amount }}" required>
-        <label>Status:</label>
-        <input type="text" name="status" value="{{ $invoice->status }}" required>
+        <input type="number" name="amount" value="{{ $payment->amount }}" required>
+        <label>Method:</label>
+        <input type="text" name="method" value="{{ $payment->method }}" required>
         <button type="submit">Update</button>
     </form>
 @endsection

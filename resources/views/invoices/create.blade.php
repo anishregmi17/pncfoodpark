@@ -1,19 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Create Invoice</h1>
-    <form action="{{ route('invoices.store') }}" method="POST">
+    <h1>Create Payment</h1>
+    <form action="{{ route('payments.store') }}" method="POST">
         @csrf
-        <label>Food Ordering:</label>
-        <select name="food_ordering_id" required>
-            @foreach ($foodOrderings as $foodOrdering)
-                <option value="{{ $foodOrdering->id }}">{{ $foodOrdering->id }} - {{ $foodOrdering->customer->name }} - {{ $foodOrdering->foodItem->name }}</option>
+        <label>Invoice:</label>
+        <select name="invoice_id" required>
+            @foreach ($invoices as $invoice)
+                <option value="{{ $invoice->id }}">{{ $invoice->id }} - {{ $invoice->foodOrdering->customer->name }}</option>
             @endforeach
         </select>
         <label>Amount:</label>
         <input type="number" name="amount" required>
-        <label>Status:</label>
-        <input type="text" name="status" required>
+        <label>Method:</label>
+        <input type="text" name="method" required>
         <button type="submit">Create</button>
     </form>
 @endsection

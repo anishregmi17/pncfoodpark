@@ -17,8 +17,20 @@
             background-color: #f8f9fa;
         }
 
+        .navbar {
+            padding-top: 10px;
+            /* Adjust padding as needed */
+            padding-bottom: 10px;
+            /* Adjust padding as needed */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            /* Optional: add a subtle shadow */
+        }
+
         .navbar-brand {
-            font-weight: bold;
+            padding-top: 0;
+            padding-bottom: 0;
+            margin-right: 15px;
+            /* Adjust as needed */
         }
 
         .container {
@@ -31,7 +43,14 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">PNC FOOD PARK</a>
+            <!-- Replace text with logo -->
+            <a class="navbar-brand" href="#">
+                <img src="{{ asset('images/logo2.png') }}" alt="Logo" height="100"
+                    class="d-inline-block align-top">
+            </a>
+            <!-- End replacement -->
+
+            <!-- Rest of the navbar -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -73,7 +92,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer bg-dark text-white text-center py-3">
+    <footer class="footer bg-dark text-white text-center py-1">
         <div class="container">
             <span>&copy; 2024 PNC FOOD PARK. All rights reserved.</span>
         </div>

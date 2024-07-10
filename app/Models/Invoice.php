@@ -10,4 +10,9 @@ class Invoice extends Model
     use HasFactory;
 
     protected $fillable = ['food_ordering_id', 'amount', 'status'];
+
+    public function foodOrdering()
+    {
+        return $this->belongsTo(FoodOrdering::class);
+    }
 }

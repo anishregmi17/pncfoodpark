@@ -20,4 +20,9 @@ class FoodOrdering extends Model
     {
         return $this->belongsTo(FoodItem::class);
     }
+
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
+    }
 }

@@ -1,8 +1,9 @@
 <?php
-
+// app/Http/Controllers/InvoiceController.php
 namespace App\Http\Controllers;
 
 use App\Models\Invoice;
+use App\Models\FoodOrdering;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
@@ -15,18 +16,19 @@ class InvoiceController extends Controller
 
     public function create()
     {
-        return view('invoices.create');
+        $foodOrderings = FoodOrdering::all();
+        return view('invoices.create', compact('foodOrderings'));
     }
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'food_ordering_id' => 'required|exists:food_orderings,id',
             'amount' => 'required|numeric',
             'status' => 'required',
         ]);
 
-        Invoice::create($validated);
+        Invoice::create($request->all());
         return redirect()->route('invoices.index');
     }
 
@@ -37,18 +39,19 @@ class InvoiceController extends Controller
 
     public function edit(Invoice $invoice)
     {
-        return view('invoices.edit', compact('invoice'));
+        $foodOrderings = FoodOrdering::all();
+        return view('invoices.edit', compact('invoice', 'foodOrderings'));
     }
 
     public function update(Request $request, Invoice $invoice)
     {
-        $validated = $request->validate([
+        $request->validate([
             'food_ordering_id' => 'required|exists:food_orderings,id',
             'amount' => 'required|numeric',
             'status' => 'required',
         ]);
 
-        $invoice->update($validated);
+        $invoice->update($request->all());
         return redirect()->route('invoices.index');
     }
 

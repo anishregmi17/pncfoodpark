@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Payment;
+use App\Models\Invoice;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -15,19 +16,19 @@ class PaymentController extends Controller
 
     public function create()
     {
-        return view('payments.create');
+        $invoices = Invoice::all();
+        return view('payments.create', compact('invoices'));
     }
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'invoice_id' => 'required|exists:invoices,id',
             'amount' => 'required|numeric',
             'method' => 'required',
-            'status' => 'required',
         ]);
 
-        Payment::create($validated);
+        Payment::create($request->all());
         return redirect()->route('payments.index');
     }
 
@@ -38,19 +39,19 @@ class PaymentController extends Controller
 
     public function edit(Payment $payment)
     {
-        return view('payments.edit', compact('payment'));
+        $invoices = Invoice::all();
+        return view('payments.edit', compact('payment', 'invoices'));
     }
 
     public function update(Request $request, Payment $payment)
     {
-        $validated = $request->validate([
+        $request->validate([
             'invoice_id' => 'required|exists:invoices,id',
             'amount' => 'required|numeric',
             'method' => 'required',
-            'status' => 'required',
         ]);
 
-        $payment->update($validated);
+        $payment->update($request->all());
         return redirect()->route('payments.index');
     }
 

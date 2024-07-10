@@ -9,17 +9,19 @@
             <label for="invoice_id">Invoice:</label>
             <select id="invoice_id" name="invoice_id" required>
                 @foreach ($invoices as $invoice)
-                    <option value="{{ $invoice->id }}" {{ $invoice->id == $payment->invoice_id ? 'selected' : '' }}>Invoice #{{ $invoice->id }}</option>
+                    <option value="{{ $invoice->id }}" {{ $invoice->id == $payment->invoice_id ? 'selected' : '' }}>
+                        Invoice #{{ $invoice->id }} - Customer: {{ $invoice->foodOrdering->customer->name }}
+                    </option>
                 @endforeach
             </select>
         </div>
         <div>
             <label for="amount">Amount:</label>
-            <input type="number" id="amount" name="amount" step="0.01" value="{{ $payment->amount }}" required>
+            <input type="number" id="amount" name="amount" value="{{ $payment->amount }}" step="0.01" required>
         </div>
         <div>
-            <label for="payment_date">Payment Date:</label>
-            <input type="date" id="payment_date" name="payment_date" value="{{ $payment->payment_date }}" required>
+            <label for="method">Method:</label>
+            <input type="text" id="method" name="method" value="{{ $payment->method }}" required>
         </div>
         <button type="submit">Update</button>
     </form>

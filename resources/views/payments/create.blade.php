@@ -8,7 +8,7 @@
             <label for="invoice_id">Invoice:</label>
             <select id="invoice_id" name="invoice_id" required>
                 @foreach ($invoices as $invoice)
-                    <option value="{{ $invoice->id }}">Invoice #{{ $invoice->id }}</option>
+                    <option value="{{ $invoice->id }}">Invoice #{{ $invoice->id }} - Customer: {{ $invoice->foodOrdering->customer->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -17,8 +17,8 @@
             <input type="number" id="amount" name="amount" step="0.01" required>
         </div>
         <div>
-            <label for="payment_date">Payment Date:</label>
-            <input type="date" id="payment_date" name="payment_date" required>
+            <label for="method">Method:</label>
+            <input type="text" id="method" name="method" required>
         </div>
         <button type="submit">Create</button>
     </form>

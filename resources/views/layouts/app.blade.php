@@ -76,10 +76,10 @@
                         <a class="nav-link" href="{{ route('food-deliverings.index') }}">Food Delivery</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Invoices</a>
+                        <a class="nav-link" href="{{ route('invoices.index') }}">Invoices</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Payments</a>
+                        <a class="nav-link" href="{{ route('invoices.index') }}">Payments</a>
                     </li>
                 </ul>
             </div>

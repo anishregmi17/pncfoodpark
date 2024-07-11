@@ -1,38 +1,41 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Payments</h1>
-    <a href="{{ route('payments.create') }}">Create New Payment</a>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Invoice</th>
-                <th>Customer</th>
-                <th>Amount</th>
-                <th>Method</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($payments as $payment)
+    <div class="container">
+        <h1 class="mt-4 mb-3">Invoices</h1>
+        <a href="{{ route('invoices.create') }}" class="btn btn-primary mb-3">Create Invoice</a>
+        <table class="table table-bordered">
+            <thead>
                 <tr>
-                    <td>{{ $payment->id }}</td>
-                    <td>{{ $payment->invoice->id }}</td>
-                    <td>{{ $payment->invoice->foodOrdering->customer->name }}</td>
-                    <td>{{ $payment->amount }}</td>
-                    <td>{{ $payment->method }}</td>
-                    <td>
-                        <a href="{{ route('payments.show', $payment->id) }}">View</a>
-                        <a href="{{ route('payments.edit', $payment->id) }}">Edit</a>
-                        <form action="{{ route('payments.destroy', $payment->id) }}" method="POST" style="display:inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">Delete</button>
-                        </form>
-                    </td>
+                    <th>ID</th>
+                    <th>Food Ordering ID</th>
+                    <th>Customer Name</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Actions</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach ($invoices as $invoice)
+                    <tr>
+                        <td>{{ $invoice->id }}</td>
+                        <td>{{ $invoice->foodOrdering->id }}</td>
+                        <td>{{ $invoice->foodOrdering->customer->name }}</td>
+                        <td>Nrs {{ $invoice->foodOrdering->foodItem->price * $invoice->foodOrdering->quantity }}</td>
+                        <td>{{ $invoice->status }}</td>
+                        <td>
+                            <a href="{{ route('invoices.show', $invoice->id) }}" class="btn btn-info">Invoice Detail+Print</a>
+                            <a href="{{ route('invoices.edit', $invoice->id) }}" class="btn btn-warning">Edit</a>
+                            <form action="{{ route('invoices.destroy', $invoice->id) }}" method="POST"
+                                style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 @endsection

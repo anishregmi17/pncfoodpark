@@ -1,9 +1,10 @@
 <?php
-// app/Http/Controllers/InvoiceController.php
+
 namespace App\Http\Controllers;
 
 use App\Models\Invoice;
 use App\Models\FoodOrdering;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
@@ -11,7 +12,8 @@ class InvoiceController extends Controller
     public function index()
     {
         $invoices = Invoice::all();
-        return view('invoices.index', compact('invoices'));
+        $payments = Payment::all();
+        return view('invoices.index', compact('invoices', 'payments'));
     }
 
     public function create()
@@ -34,6 +36,7 @@ class InvoiceController extends Controller
 
     public function show(Invoice $invoice)
     {
+        $invoice->load('foodOrdering.customer', 'foodOrdering.foodItem');
         return view('invoices.show', compact('invoice'));
     }
 

@@ -1,28 +1,67 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Create Food Item</h1>
-    <form action="{{ route('food-items.store') }}" method="POST">
-        @csrf
-        <div>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-        </div>
-        <div>
-            <label for="description">Description:</label>
-            <input type="text" id="description" name="description" required>
-        </div>
-        <div>
-            <label for="price">Price:</label>
-            <input type="number" id="price" name="price" step="0.01" required>
-        </div>
-        <div>
-            <label for="availability">Availability:</label>
-            <select id="availability" name="availability" required>
-                <option value="1">Available</option>
-                <option value="0">Not Available</option>
-            </select>
-        </div>
-        <button type="submit">Create</button>
-    </form>
+    <div class="container">
+        <h1 class="mt-4 mb-3">Create Food Item</h1>
+        <a href="{{ route('food-items.index') }}" class="btn btn-secondary mb-3">Back to List</a>
+        <form action="{{ route('food-items.store') }}" method="POST" class="needs-validation" novalidate>
+            @csrf
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
+                    value="{{ old('name') }}" required>
+                @error('name')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <input type="text" class="form-control @error('description') is-invalid @enderror" id="description"
+                    name="description" value="{{ old('description') }}" required>
+                @error('description')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="number" class="form-control @error('price') is-invalid @enderror" id="price"
+                    name="price" step="0.01" value="{{ old('price') }}" required>
+                @error('price')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="availability">Availability:</label>
+                <select class="form-control @error('availability') is-invalid @enderror" id="availability"
+                    name="availability" required>
+                    <option value="1" {{ old('availability') == '1' ? 'selected' : '' }}>Available</option>
+                    <option value="0" {{ old('availability') == '0' ? 'selected' : '' }}>Not Available</option>
+                </select>
+                @error('availability')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+@endsection
+
+@section('scripts')
+    <script>
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                var forms = document.getElementsByClassName('needs-validation');
+                Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
 @endsection

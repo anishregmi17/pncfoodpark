@@ -45,7 +45,7 @@
         <div class="container">
             <!-- Replace text with logo -->
             <a class="navbar-brand" href="#">
-                <img src="{{ asset('images/logo2.png') }}" alt="Logo" height="100"
+                <img src="{{ asset('images/logo3.png') }}" alt="Logo" height="130"
                     class="d-inline-block align-top">
             </a>
             <!-- End replacement -->

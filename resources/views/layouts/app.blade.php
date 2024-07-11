@@ -45,7 +45,7 @@
         <div class="container">
             <!-- Replace text with logo -->
             <a class="navbar-brand" href="#">
-                <img src="{{ asset('images/logo3.png') }}" alt="Logo" height="130"
+                <img src="{{ asset('images/logo.png') }}" alt="Logo" height="130"
                     class="d-inline-block align-top">
             </a>
             <!-- End replacement -->
@@ -70,7 +70,7 @@
                         <a class="nav-link" href="{{ route('food-items.index') }}">Food Items</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Food Orders</a>
+                        <a class="nav-link" href="{{ route('food-orderings.index') }}">Food Orders</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="">Food Delivery</a>

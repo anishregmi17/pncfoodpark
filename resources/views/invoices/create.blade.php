@@ -8,9 +8,11 @@
             @csrf
             <div class="form-group">
                 <label for="food_ordering_id">Food Ordering:</label>
-                <select class="form-control @error('food_ordering_id') is-invalid @enderror" id="food_ordering_id" name="food_ordering_id" required>
+                <select class="form-control @error('food_ordering_id') is-invalid @enderror" id="food_ordering_id"
+                    name="food_ordering_id" required>
                     @foreach ($foodOrderings as $foodOrdering)
-                        <option value="{{ $foodOrdering->id }}">{{ $foodOrdering->id }} - {{ $foodOrdering->customer->name }}</option>
+                        <option value="{{ $foodOrdering->id }}">{{ $foodOrdering->id }} -
+                            {{ $foodOrdering->customer->name }}</option>
                     @endforeach
                 </select>
                 @error('food_ordering_id')
@@ -19,7 +21,8 @@
             </div>
             <div class="form-group">
                 <label for="amount">Amount:</label>
-                <input type="number" class="form-control @error('amount') is-invalid @enderror" id="amount" name="amount" required>
+                <input type="number" class="form-control @error('amount') is-invalid @enderror" id="amount"
+                    name="amount" required>
                 @error('amount')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

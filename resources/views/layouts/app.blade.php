@@ -20,9 +20,9 @@
         .navbar {
             padding-top: 1px;
             /* Adjust padding as needed */
-            padding-bottom: 3px;
+            padding-bottom: 1px;
             /* Adjust padding as needed */
-            box-shadow: 0 2px 4px rgba(147, 126, 126, 0.1);
+            box-shadow: 0 1px 1px rgba(195, 170, 170, 0.1);
             /* Optional: add a subtle shadow */
         }
 
@@ -34,7 +34,7 @@
         }
 
         .container {
-            margin-top: 5px;
+            margin-top: 1px;
         }
     </style>
 </head>
@@ -56,33 +56,65 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto" style="font-size: 18px;">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
+                        <a class="nav-link" href="{{ route('dashboard') }}"
+                            style="color: #ffffff; padding: 5px 10px; transition: background-color 0.3s;">
+                            Dashboard
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('restaurant-staff.index') }}">Staff</a>
+                        <a class="nav-link" href="{{ route('restaurant-staff.index') }}"
+                            style="color: #ffffff; padding: 5px 10px; transition: background-color 0.3s;">
+                            Staff
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('customers.index') }}">Customer</a>
+                        <a class="nav-link" href="{{ route('customers.index') }}"
+                            style="color: #ffffff; padding: 5px 10px; transition: background-color 0.3s;">
+                            Customer
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('food-items.index') }}">Food Items</a>
+                        <a class="nav-link" href="{{ route('food-items.index') }}"
+                            style="color: #ffffff; padding: 5px 10px; transition: background-color 0.3s;">
+                            Food Items
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('food-orderings.index') }}">Food Orders</a>
+                        <a class="nav-link" href="{{ route('food-orderings.index') }}"
+                            style="color: #ffffff; padding: 5px 10px; transition: background-color 0.3s;">
+                            Food Orders
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('food-deliverings.index') }}">Food Delivery</a>
+                        <a class="nav-link" href="{{ route('food-deliverings.index') }}"
+                            style="color: #ffffff; padding: 5px 10px; transition: background-color 0.3s;">
+                            Food Delivery
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('invoices.index') }}">Invoices</a>
+                        <a class="nav-link" href="{{ route('invoices.index') }}"
+                            style="color: #ffffff; padding: 5px 10px; transition: background-color 0.3s;">
+                            Invoices
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('payments.index') }}">Payments</a>
+                        <a class="nav-link" href="{{ route('payments.index') }}"
+                            style="color: #ffffff; padding: 5px 10px; transition: background-color 0.3s;">
+                            Payments
+                        </a>
                     </li>
                 </ul>
             </div>
+
+            <style>
+                .navbar-nav .nav-link:hover {
+                    background-color: #0056b3;
+                    color: #ffffff;
+                }
+            </style>
+
         </div>
     </nav>
 
@@ -92,11 +124,11 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer bg-dark text-white text-center py-1">
+    {{-- <footer class="footer bg-dark text-white text-center py-1">
         <div class="container">
             <span>&copy; 2024 PNC FOOD PARK. All rights reserved.</span>
         </div>
-    </footer>
+    </footer> --}}
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

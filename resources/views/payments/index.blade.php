@@ -27,7 +27,7 @@
                         <td>{{ ucfirst($payment->invoice->status) }}</td>
                         <td>
                             <a href="{{ route('invoices.show', $payment->invoice_id) }}" class="btn btn-info">View Invoice</a>
-                            <a href="{{ route('payments.edit', $payment->id) }}" class="btn btn-warning">Edit</a>
+                            {{-- <a href="{{ route('payments.edit', $payment->id) }}" class="btn btn-warning">Edit</a> --}}
                         </td>
                     </tr>
                 @endforeach

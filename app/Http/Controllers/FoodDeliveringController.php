@@ -1,6 +1,5 @@
 <?php
 
-// app/Http/Controllers/FoodDeliveringController.php
 namespace App\Http\Controllers;
 
 use App\Models\FoodDelivering;
@@ -25,11 +24,14 @@ class FoodDeliveringController extends Controller
     {
         $request->validate([
             'food_ordering_id' => 'required|exists:food_orderings,id',
-            'status' => 'required',
+            'delivery_status' => 'required',
+            'delivery_date' => 'required|date',
         ]);
 
         FoodDelivering::create($request->all());
-        return redirect()->route('food-deliverings.index');
+
+        return redirect()->route('food-deliverings.index')
+            ->with('success', 'Food Delivering created successfully.');
     }
 
     public function show(FoodDelivering $foodDelivering)
@@ -47,16 +49,21 @@ class FoodDeliveringController extends Controller
     {
         $request->validate([
             'food_ordering_id' => 'required|exists:food_orderings,id',
-            'status' => 'required',
+            'delivery_status' => 'required',
+            'delivery_date' => 'required|date',
         ]);
 
         $foodDelivering->update($request->all());
-        return redirect()->route('food-deliverings.index');
+
+        return redirect()->route('food-deliverings.index')
+            ->with('success', 'Food Delivering updated successfully.');
     }
 
     public function destroy(FoodDelivering $foodDelivering)
     {
         $foodDelivering->delete();
-        return redirect()->route('food-deliverings.index');
+
+        return redirect()->route('food-deliverings.index')
+            ->with('success', 'Food Delivering deleted successfully.');
     }
 }

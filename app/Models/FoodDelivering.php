@@ -9,5 +9,14 @@ class FoodDelivering extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['food_ordering_id', 'status'];
+    protected $fillable = [
+        'food_ordering_id',
+        'delivery_status',
+        'delivery_date'
+    ];
+
+    public function foodOrdering()
+    {
+        return $this->belongsTo(FoodOrdering::class);
+    }
 }

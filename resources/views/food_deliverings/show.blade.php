@@ -1,9 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Food Delivering Details</h1>
-    <p>Food Ordering: Order #{{ $foodDelivering->food_ordering_id }}</p>
-    <p>Delivery Status: {{ $foodDelivering->delivery_status }}</p>
-    <p>Delivery Date: {{ $foodDelivering->delivery_date }}</p>
-    <a href="{{ route('food-deliverings.index') }}">Back to Food Deliverings</a>
+    <div class="container">
+        <h1>Food Delivering Details</h1>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Food Ordering: Order #{{ $foodDelivering->foodOrdering->id }}</h5>
+                <p class="card-text">
+                    <strong>Delivery Status:</strong> {{ ucfirst($foodDelivering->delivery_status) }}<br>
+                    <strong>Delivery Date:</strong> {{ $foodDelivering->delivery_date }}
+                </p>
+            </div>
+            <div class="card-footer">
+                <a href="{{ route('food-deliverings.index') }}" class="btn btn-primary">Back to List</a>
+            </div>
+        </div>
+    </div>
 @endsection

@@ -1,5 +1,7 @@
 <?php
 
+// app/Models/FoodOrdering.php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,8 +23,8 @@ class FoodOrdering extends Model
         return $this->belongsTo(FoodItem::class);
     }
 
-    public function invoices()
+    public function foodDeliverings()
     {
-        return $this->hasMany(Invoice::class);
+        return $this->hasMany(FoodDelivering::class);
     }
 }

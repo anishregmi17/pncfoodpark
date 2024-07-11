@@ -63,4 +63,15 @@ class InvoiceController extends Controller
         $invoice->delete();
         return redirect()->route('invoices.index');
     }
+    public function getInvoiceAmount($invoiceId)
+    {
+        $invoice = Invoice::find($invoiceId);
+
+        if ($invoice && $invoice->foodOrdering && $invoice->foodOrdering->foodItem) {
+            $amount = $invoice->foodOrdering->foodItem->price * $invoice->foodOrdering->quantity * 1.13;
+            return response()->json(['amount' => $amount]);
+        } else {
+            return response()->json(['amount' => 0]);
+        }
+    }
 }

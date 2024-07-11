@@ -79,7 +79,7 @@
                         <a class="nav-link" href="{{ route('invoices.index') }}">Invoices</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('invoices.index') }}">Payments</a>
+                        <a class="nav-link" href="{{ route('payments.index') }}">Payments</a>
                     </li>
                 </ul>
             </div>

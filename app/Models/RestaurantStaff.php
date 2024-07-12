@@ -9,5 +9,5 @@ class RestaurantStaff extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'role', 'contact'];
+    protected $fillable = ['name', 'role', 'contact', 'profile_image'];
 }

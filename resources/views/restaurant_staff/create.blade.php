@@ -4,7 +4,8 @@
     <div class="container">
         <h1 class="mt-4 mb-3">Create Restaurant Staff</h1>
         <a href="{{ route('restaurant-staff.index') }}" class="btn btn-secondary mb-3">Back to List</a>
-        <form action="{{ route('restaurant-staff.store') }}" method="POST" class="needs-validation" novalidate>
+        <form action="{{ route('restaurant-staff.store') }}" method="POST" enctype="multipart/form-data"
+            class="needs-validation" novalidate>
             @csrf
             <div class="form-group">
                 <label for="name">Name:</label>
@@ -27,6 +28,14 @@
                 <input type="text" class="form-control @error('contact') is-invalid @enderror" id="contact"
                     name="contact" value="{{ old('contact') }}" required>
                 @error('contact')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="profile_image">Profile Image:</label>
+                <input type="file" class="form-control-file @error('profile_image') is-invalid @enderror"
+                    id="profile_image" name="profile_image">
+                @error('profile_image')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>

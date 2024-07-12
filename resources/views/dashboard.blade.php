@@ -4,7 +4,7 @@
     <div class="container-fluid d-flex flex-column" style="height: 60vh;">
         <!-- Top Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="{{ route('dashboard') }}">PNC Food Park - Dashboard</a>
+            <a class="navbar-brand font-weight-bold" href="{{ route('dashboard') }}">PNC Food Park - Dashboard</a>
         </nav>
 
         <!-- Main Content -->

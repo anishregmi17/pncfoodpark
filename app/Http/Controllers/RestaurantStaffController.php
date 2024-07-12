@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\RestaurantStaff;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class RestaurantStaffController extends Controller
 {
@@ -24,7 +25,15 @@ class RestaurantStaffController extends Controller
             'name' => 'required|string|max:255',
             'role' => 'required|string|max:255',
             'contact' => 'required|string|max:255',
+            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        if ($request->hasFile('profile_image')) {
+            $image = $request->file('profile_image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName);
+            $validated['profile_image'] = 'images/' . $imageName;
+        }
 
         RestaurantStaff::create($validated);
         return redirect()->route('restaurant-staff.index');
@@ -46,7 +55,20 @@ class RestaurantStaffController extends Controller
             'name' => 'required|string|max:255',
             'role' => 'required|string|max:255',
             'contact' => 'required|string|max:255',
+            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        if ($request->hasFile('profile_image')) {
+            // Delete the old profile image if it exists
+            if ($restaurantStaff->profile_image) {
+                File::delete(public_path($restaurantStaff->profile_image));
+            }
+
+            $image = $request->file('profile_image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName);
+            $validated['profile_image'] = 'images/' . $imageName;
+        }
 
         $restaurantStaff->update($validated);
         return redirect()->route('restaurant-staff.index');
@@ -54,6 +76,9 @@ class RestaurantStaffController extends Controller
 
     public function destroy(RestaurantStaff $restaurantStaff)
     {
+        if ($restaurantStaff->profile_image) {
+            File::delete(public_path($restaurantStaff->profile_image));
+        }
         $restaurantStaff->delete();
         return redirect()->route('restaurant-staff.index');
     }

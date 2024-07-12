@@ -8,6 +8,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -66,13 +68,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('restaurant-staff.index') }}"
                             style="color: #ffffff; padding: 5px 10px; transition: background-color 0.3s;">
-                            Staff
+                            Our Staffs
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('customers.index') }}"
                             style="color: #ffffff; padding: 5px 10px; transition: background-color 0.3s;">
-                            Customer
+                            Customers
                         </a>
                     </li>
                     <li class="nav-item">

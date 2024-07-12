@@ -4,8 +4,8 @@
     <div class="container">
         <h1 class="mt-4 mb-3">Edit Restaurant Staff</h1>
         <a href="{{ route('restaurant-staff.index') }}" class="btn btn-secondary mb-3">Back to List</a>
-        <form action="{{ route('restaurant-staff.update', $restaurantStaff->id) }}" method="POST" class="needs-validation"
-            novalidate>
+        <form action="{{ route('restaurant-staff.update', $restaurantStaff->id) }}" method="POST"
+            enctype="multipart/form-data" class="needs-validation" novalidate>
             @csrf
             @method('PUT')
             <div class="form-group">
@@ -29,6 +29,14 @@
                 <input type="text" class="form-control @error('contact') is-invalid @enderror" id="contact"
                     name="contact" value="{{ old('contact', $restaurantStaff->contact) }}" required>
                 @error('contact')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="profile_image">Profile Image:</label>
+                <input type="file" class="form-control-file @error('profile_image') is-invalid @enderror"
+                    id="profile_image" name="profile_image">
+                @error('profile_image')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>

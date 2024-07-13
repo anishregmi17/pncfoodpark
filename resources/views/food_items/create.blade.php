@@ -4,7 +4,7 @@
     <div class="container">
         <h1 class="mt-4 mb-3">Create Food Item</h1>
         <a href="{{ route('food-items.index') }}" class="btn btn-secondary mb-3">Back to List</a>
-        <form action="{{ route('food-items.store') }}" method="POST" class="needs-validation" novalidate>
+        <form action="{{ route('food-items.store') }}" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="name">Name:</label>
@@ -38,6 +38,13 @@
                     <option value="0" {{ old('availability') == '0' ? 'selected' : '' }}>Not Available</option>
                 </select>
                 @error('availability')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="image">Image:</label>
+                <input type="file" class="form-control-file @error('image') is-invalid @enderror" id="image" name="image">
+                @error('image')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>

@@ -4,7 +4,7 @@
     <div class="container">
         <h1 class="mt-4 mb-3">Edit Food Item</h1>
         <a href="{{ route('food-items.index') }}" class="btn btn-secondary mb-3">Back to List</a>
-        <form action="{{ route('food-items.update', $foodItem->id) }}" method="POST" class="needs-validation" novalidate>
+        <form action="{{ route('food-items.update', $foodItem->id) }}" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-group">
@@ -38,6 +38,18 @@
                     <option value="0" {{ old('availability', $foodItem->availability) == '0' ? 'selected' : '' }}>Not Available</option>
                 </select>
                 @error('availability')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="image">Current Image:</label><br>
+                @if ($foodItem->image)
+                    <img src="{{ asset('storage/' . $foodItem->image) }}" alt="Food Item Image" style="max-width: 300px; margin-bottom: 10px;">
+                @else
+                    <p>No image uploaded</p>
+                @endif
+                <input type="file" class="form-control-file mt-2 @error('image') is-invalid @enderror" id="image" name="image">
+                @error('image')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>

@@ -19,22 +19,36 @@
                         <th>Description</th>
                         <th>Price</th>
                         <th>Availability</th>
+                        <th>Image</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($foodItems as $foodItem)
                         <tr>
-                            <td>{{ $foodItem->name }}</td>
+                            <td><strong>{{ $foodItem->name }}</strong></td>
                             <td>{{ $foodItem->description }}</td>
                             <td>{{ $foodItem->price }}</td>
-                            <td>{{ $foodItem->availability ? 'Available' : 'Not Available' }}</td>
                             <td>
-                                <a href="{{ route('food-items.show', $foodItem->id) }}" class="btn btn-info btn-sm">View</a>
+                                @if ($foodItem->availability)
+                                    <span class="badge badge-success">Available</span>
+                                @else
+                                    <span class="badge badge-warning">Not Available</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($foodItem->image)
+                                    <img src="{{ asset('storage/' . $foodItem->image) }}" alt="Food Item Image"
+                                        style="width: 70px; height: 70px;">
+                                @else
+                                    <p>No image</p>
+                                @endif
+                            </td>
+                            <td>
                                 <a href="{{ route('food-items.edit', $foodItem->id) }}"
                                     class="btn btn-warning btn-sm">Edit</a>
                                 <form action="{{ route('food-items.destroy', $foodItem->id) }}" method="POST"
-                                    style="display:inline;">
+                                    style="display: inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm"

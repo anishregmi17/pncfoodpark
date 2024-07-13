@@ -12,6 +12,11 @@
                 <p class="card-text"><strong>Price:</strong> {{ $foodItem->price }}</p>
                 <p class="card-text"><strong>Availability:</strong>
                     {{ $foodItem->availability ? 'Available' : 'Not Available' }}</p>
+                @if ($foodItem->image)
+                    <img src="{{ asset('storage/' . $foodItem->image) }}" alt="Food Item Image" class="img-fluid mb-3">
+                @else
+                    <p>No image</p>
+                @endif
                 <a href="{{ route('food-items.edit', $foodItem->id) }}" class="btn btn-warning">Edit</a>
             </div>
         </div>

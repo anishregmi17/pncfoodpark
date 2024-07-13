@@ -24,3 +24,5 @@ Route::resource('food-deliverings', FoodDeliveringController::class);
 
 
 Route::get('/invoices/{id}/amount', [InvoiceController::class, 'getInvoiceAmount']);
+
+Route::get('/food-orderings/{id}/amount', 'FoodOrderingController@getAmount');
